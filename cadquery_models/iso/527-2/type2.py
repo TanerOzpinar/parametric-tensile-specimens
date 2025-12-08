@@ -17,7 +17,7 @@ params = {
     "grip_length_target": 60.0     # Reference only
 }
 
-# --- 2. Geometric Calculations ---
+# 2. Geometric Calculations 
 def generate_type_2(p):
     # Extract variables
     L0 = p["overall_length"]
@@ -83,4 +83,5 @@ if 'show_object' in globals():
 # 6. Export (Optional) 
 output_folder = r"C:\Users\taner\Downloads"
 file_path = os.path.join(output_folder, params["type_name"] + ".step")
+
 cq.exporters.export(final_model, file_path)
