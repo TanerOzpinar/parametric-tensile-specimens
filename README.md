@@ -23,4 +23,19 @@ These models are intended for:
 - Modular lattice pattern system (gyroid, diamond, honeycomb, etc.)  
 - Export to **STL**, **STEP**, and other formats  
 - Ready to use example scripts  
-- Clean and extendable code structure  
+- Clean and extendable code structure
+
+## 📚 Supported Standards
+
+### **ASTM**
+| Standard | Description |
+|---------|-------------|
+| ASTM D638 | Tensile properties of plastics (Type I, II, V) |
+
+### **ISO**
+| Standard | Description |
+|---------|-------------|
+| ISO 527 | Tensile testing of plastics (Types 1A, 1B, 2) |
+
+All standards are structured into subfolders under `cadquery_models/astm/` and `cadquery_models/iso/`.
+
