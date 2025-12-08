@@ -2,7 +2,7 @@ import cadquery as cq
 import math
 import os
 
-# --- 1. User Parameters ---
+# 1. User Parameters 
 params = {
     "overall_length": 150.0,
     "gauge_length": 110.0,
@@ -12,7 +12,7 @@ params = {
     "thickness": 4.0,
     "transition_radius": 60.0,
     
-    # --- Manufacturing Parameters ---
+    # Manufacturing Parameters 
     "grid_cell_size": 4.0,       # Size of one repeating unit
     "grid_wall_thickness": 0.8,  # Thickness of the internal lattice ribs
     "perimeter_wall": 0.8,       # Thickness of the solid outer shell
@@ -53,7 +53,7 @@ def generate_iso_with_wall(p):
     half_solid = quarter_solid.union(quarter_solid.mirror("YZ"))
     main_body = half_solid.union(half_solid.mirror("XZ"))
     
-    # --- 4. Create the Inner Core (For the Grid) ---
+    # 4. Create the Inner Core (For the Grid) 
     full_profile = (
         cq.Workplane("XY")
         .moveTo(x_start_arc, y_narrow)
@@ -78,7 +78,7 @@ def generate_iso_with_wall(p):
         .extrude(H)
     )
 
-    # --- 5. Generate Grid Cutter ---
+    # 5. Generate Grid Cutter 
     cell_size = p["grid_cell_size"]
     hole_size = cell_size - p["grid_wall_thickness"]
     
@@ -93,28 +93,26 @@ def generate_iso_with_wall(p):
         .translate((0, 0, -H/2))    # Center in Z
     )
     
-    # --- 6. Boolean Logic ---
+    # 6. Boolean Logic 
     constrained_holes = raw_grid.intersect(inner_core_solid)
     final_part = main_body.cut(constrained_holes)
     
     return final_part
 
-# --- Execution ---
+# Execution 
 final_model = generate_iso_with_wall(params)
 
-# --- Render ---
+# Render 
 if 'show_object' in globals():
     show_object(final_model, name="ISO_527_Walled_Grid")
 
-# ==========================================
-# EXPORT SECTION
-# ==========================================
+# EXPORT SECTION,
 output_folder = r"C:\Users\taner\Downloads"
 
 if not os.path.exists(output_folder):
     print(f"Warning: Directory '{output_folder}' does not exist.")
 else:
-    # --- 1. STL Export (For DLP 3D Printing) ---
+    # 1. STL Export
     stl_name = "ISO_527_Walled_Grid.stl"
     stl_path = os.path.join(output_folder, stl_name)
     try:
@@ -124,7 +122,7 @@ else:
         print(f"STL Error: {e}")
 
 # STEP Export (Optional)
-# Uncomment the lines below carefully.
+# Uncomment the lines below carefully
 #    step_name = "ISO_527_Walled_Grid.step"   # <--- Aligned with stl_name above
 #    step_path = os.path.join(output_folder, step_name)
 #    try:
