@@ -5,8 +5,7 @@ import os
 # ==============================================================================
 # 1. STANDARD SPECIFICATIONS (ASTM D638)
 # ==============================================================================
-# I have defined the dimensions for Type I, II, and V based on the standard.
-# You can easily add more types here if needed.
+
 
 ASTM_SPECS = {
     "TYPE_I": {
@@ -148,4 +147,5 @@ try:
 
 except Exception as e:
     # Catch any errors and print them clearly
+
     print(f"An error occurred: {e}")
